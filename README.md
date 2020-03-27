@@ -1,2 +1,2 @@
 # covid19-death-graph
-Shit
+Covid hackaton project

@@ -1,8 +1,6 @@
 <template>
   <div class="home-view">
-    ciao 
     <graph /> 
-    <filters />  
   </div>
 </template>
 

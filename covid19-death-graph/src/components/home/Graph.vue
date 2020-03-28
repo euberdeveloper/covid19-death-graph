@@ -1,97 +1,67 @@
 <template>
   <div class="graph">
-    <!-- <canvas id="chart" width="400" height="400"></canvas> -->
+    <div id="div_g" style="width:600px; height:300px;"></div>
   </div>
 </template>
 
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Chart } from "chart.js";
-import * as API from '../../services/api';
+import Dygraph from "dygraphs";
+import * as API from "../../services/api";
 
 @Component
 export default class Graph extends Vue {
-  private chart: Chart = null;
+  private countries: string[] = [];
+  private chart: Dygraph | null = null;
+  private data: {
+    [countryName: string]: (number | null)[][];
+  } = {};
 
   mounted() {
-    let ctx = (document as any).getElementById("chart")?.getContext("2d")
-    if (!ctx) return;
-    this.chart = new Chart(
-      ctx,
+
+    this.data["IT"] = [
+        [1, 10, null],
+        [2, 20, null],
+        [3, 50, null],
+        [4, 70, null]
+      ]
+
+    this.data["DE"] = [
+        [1, null, 34],
+        [2, null, 92],
+        [3, null, 84],
+        [4, null, 29]
+      ]
+
+    console.log(JSON.stringify(this.data))
+
+    this.chart = new Dygraph(
+      document.getElementById("div_g") as HTMLElement,
+      Object.values(this.data).flat(1),
       {
-        type: "line",
-        data: {
-          labels: [1,2,3,4],
-          datasets: [
-            {
-              label: "VERDE",
-              backgroundColor: "rgba(0, 0, 0, 0)",
-              borderColor: "rgba(255, 0, 0, 0.5)",
-              data: [1,2,3,4],
-              borderWidth: 20
-            },
-            {
-              label: "ROSSO",
-              backgroundColor: "rgba(0, 0, 0, 0)",
-              borderColor: "rgba(0, 255, 0, 0.5)",
-              data: [1,2,3,4],
-              borderWidth: 20
-            },
-            {
-              label: "ROSSO",
-              backgroundColor: "rgba(0, 0, 0, 0)",
-              borderColor: "rgba(0, 0, 255, 0.5)",
-              data: [1,2,3,4],
-              borderWidth: 20
-            }
-          ]
-        },
-        options: {
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true
-                }
-              }
-            ]
-          }
-        }
+        labels: ["Time", "A", "B"]
       }
     );
+
+
+
+    let i = 5;
+    setInterval(() => {
+      this.data["IT"].push([i++, Math.random() * 100, null]);
+      this.data["DE"].push([i++, null, Math.random() * 100]);
+
+      (this.chart as Dygraph).updateOptions({
+        file: Object.values(this.data).flat(1)
+      });
+    }, 1000);
   }
 
-  public createChart() {
+  public createChart(): void {}
 
-    const ctx = (document.getElementById("chart") as any).getContext("2d")
-    if (!ctx)
-      return
-
-    this.chart = new Chart(ctx, {
-
-    })
-
-  }
-
+  public updateChart(countryCodes: string[], dates: string[]) {}
 }
-
 </script>
 
 <style lang="scss">
-.graph {
-  height: 100%;
-  width: 100%;
-
-  canvas {
-    position: absolute;
-    z-index: 20;
-    top: 0;
-    width: 600px !important;
-    height: 600px !important;
-  }
-  input {
-    width: 600px;
-  }
-}
 </style>

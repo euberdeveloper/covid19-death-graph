@@ -22,13 +22,20 @@ export default class Home extends Vue {
     const ctx = (document as any).getElementById('chart').getContext('2d');
     let myLineChart = new Chart(ctx, {
       type: 'line',
-      data: [{
-    x: 10,
-    y: 20
-}, {
-    x: 15,
-    y: 10
-}],
+      data: {
+        labels: [1,2,3,4,5,6,7,8,0],
+        datasets: [{
+          label: "VERDE",
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgba(255, 0, 0, 0.5)',
+          data: [1,2,3,4,5,6,7,8,0].sort((a, b) => Math.random() > 0.5 ? 1 : -1)
+        },{
+          label: "ROSSO",
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgba(0, 255, 0, 0.5)',
+          data: [1,2,3,4,5,6,7,8,0].sort((a, b) => Math.random() > 0.5 ? 1 : -1)
+        }]
+      },
       options: {
         scales: {
             yAxes: [{
@@ -47,10 +54,10 @@ export default class Home extends Vue {
 .home {
   height: 100%;
   width: 100%;
-  
+
   canvas {
-    width: 400px !important;
-    height: 400px !important;
+    width: 200px !important;
+    height: 200px !important;
   }
 }
 </style>

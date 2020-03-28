@@ -18,7 +18,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-
 import * as API from '../../services/api';
 
 @Component

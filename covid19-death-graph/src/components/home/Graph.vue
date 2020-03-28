@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="graph">
     <!-- <canvas id="chart" width="400" height="400"></canvas> -->
   </div>
 </template>
@@ -8,9 +8,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Chart } from "chart.js";
+import * as API from '../../services/api';
 
 @Component
-export default class Home extends Vue {
+export default class Graph extends Vue {
   private chart: Chart = null;
 
   mounted() {
@@ -60,11 +61,25 @@ export default class Home extends Vue {
       }
     );
   }
+
+  public createChart() {
+
+    const ctx = (document.getElementById("chart") as any).getContext("2d")
+    if (!ctx)
+      return
+
+    this.chart = new Chart(ctx, {
+
+    })
+
+  }
+
 }
+
 </script>
 
 <style lang="scss">
-.home {
+.graph {
   height: 100%;
   width: 100%;
 

@@ -255,3 +255,10 @@ export function countryList(): { name: string; code: string }[] {
         { name: "Zimbabwe", code: "ZW" }
     ]
 }
+
+
+export function data(countryCode: string): { death: number, infected: number, date: string }[] {
+
+    return []
+
+}

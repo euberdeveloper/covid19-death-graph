@@ -1,7 +1,7 @@
 <template>
   <div class="home-view">
     ciao 
-    <home /> 
+    <graph /> 
     <filters />  
   </div>
 </template>
@@ -9,12 +9,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-import Home from '@/components/home/Home.vue';
+import Graph from '@/components/home/Graph.vue';
 import Filters from '@/components/home/Filters.vue';
 
 @Component({
   components: {
-    Home, Filters
+    Graph, Filters
   }
 })
 export default class HomeView extends Vue {

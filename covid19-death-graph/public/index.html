@@ -5,13 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <script type="text/javascript" src="dat.gui.min.js"></script>
     <title>Covid-19</title>
   </head>
-  <body>
+  <body style="margin: 0">
     <noscript>
       <strong>We're sorry but Covid-19 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-105392568-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+    <canvas style="width: 100vw; height: 100vh;"></canvas>
+
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script type="text/javascript" src="script.js"></script>
   </body>
 </html>

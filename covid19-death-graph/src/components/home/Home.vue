@@ -1,17 +1,23 @@
 <template>
   <div class="home">
+
+
     <canvas id="chart" width="400" height="400"></canvas>
     <button @click="pippo">Rigioca</button>
     <p>{{counter}}</p>
     <input type="range" min="0" max="16581375" class="slider" id="myRange" v-on:input="color = $event.target.value" @change="col(0)"/><br>
     <input type="range" min="0" max="16581375" class="slider" id="myRange" v-on:input="color = $event.target.value" @change="col(1)"/><br>
     <input type="range" min="0" max="16581375" class="slider" id="myRange" v-on:input="color = $event.target.value" @change="col(2)"/>
+      <div id="3d-graph"></div>
   </div>
 </template>
+
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Chart } from "chart.js";
+import ForceGraph3D from '3d-force-graph';
+
 
 @Component
 export default class Home extends Vue {
@@ -26,7 +32,27 @@ export default class Home extends Vue {
   private intervallo: number = 3;
   private len: number = 5;
 
+  d3() {
+        const N = 300;
+    const gData = {
+      nodes: [...Array(N).keys()].map(i => ({ id: i })),
+      links: [...Array(N).keys()]
+        .filter(id => id)
+        .map(id => ({
+          source: id,
+          target: Math.round(Math.random() * (id-1))
+        }))
+    };
+
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+        .graphData(gData);
+  }
+
   mounted() {
+
+    this.d3()
+
     this.chart = new Chart(
       (document as any).getElementById("chart").getContext("2d"),
       {
@@ -92,10 +118,10 @@ export default class Home extends Vue {
           this.finito = false;
 
 
-    }, 100);
+    }, 1000);
   }
 
-  col(n) {
+  col(n: number) {
     let cc: number = this.color
     let a: number = cc % 255
     cc /= 255;
@@ -126,6 +152,9 @@ export default class Home extends Vue {
   width: 100%;
 
   canvas {
+    position: absolute;
+    z-index: 20;
+    top:0;
     width: 600px !important;
     height: 600px !important;
   }

@@ -22,7 +22,13 @@ export default class Home extends Vue {
     const ctx = (document as any).getElementById('chart').getContext('2d');
     let myLineChart = new Chart(ctx, {
       type: 'line',
-      data: [1,2,3,4,5,6,7,8,9,0],
+      data: [{
+    x: 10,
+    y: 20
+}, {
+    x: 15,
+    y: 10
+}],
       options: {
         scales: {
             yAxes: [{

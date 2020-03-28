@@ -1,7 +1,8 @@
 <template>
   <div class="home-view">
-    <fluid />  
-    <home />  
+    ciao 
+    <home /> 
+    <filters />  
   </div>
 </template>
 
@@ -9,11 +10,11 @@
 import { Component, Vue } from "vue-property-decorator";
 
 import Home from '@/components/home/Home.vue';
-import Fluid from '@/components/home/Fluid.vue';
+import Filters from '@/components/home/Filters.vue';
 
 @Component({
   components: {
-    Home, Fluid
+    Home, Filters
   }
 })
 export default class HomeView extends Vue {
@@ -21,8 +22,4 @@ export default class HomeView extends Vue {
 </script>
 
 <style lang="scss">
-.home-view {
-  height: 100%;
-  width: 100%;
-}
 </style>

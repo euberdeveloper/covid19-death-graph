@@ -19,21 +19,17 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
+import * as API from '../../services/api';
+
 @Component
 export default class Filters extends Vue {
-  private countries: { name: string; code: string }[] = [
-    { name: "Italy", code: "IT" },
-    { name: "United States", code: "US" },
-    { name: "Germany", code: "DE" },
-    { name: "France", code: "FR" },
-    { name: "United Kingdom", code: "UK" },
-    { name: "Spain", code: "SP" },
-    { name: "Canada", code: "CA" }
-  ];
+  private countries: { name: string; code: string }[] = []
 
   private selectedCountry: any[] = [];
 
-  mounted() {}
+  mounted() {
+    this.countries = API.countryList()
+  }
 }
 </script>
 
@@ -60,8 +56,11 @@ $main-color: #f66;
     list-style: none;
     padding: 0.5em 1em;
     margin: 0;
+    max-height: 500px;
+    overflow-y: scroll;
 
     li {
+      display: flex;
       padding: 0.5em 0;
 
       input[type="checkbox"] {
@@ -107,6 +106,7 @@ $main-color: #f66;
       }
 
       label {
+        flex-grow: 1;
         padding-left: 10px;
         cursor: pointer;
       }

@@ -40,13 +40,14 @@ $main-color: #111;
     margin: 10px 1em;
     padding: 5px 0.4em;
     border-radius: 5px;
+    transition: 0.3s ease-out background-color;
 
     &.active {
       text-decoration: underline;
     }
 
     &:hover {
-      background-color: #222;
+      background-color: #333;
       color: #eee;
     }
   }

@@ -40,23 +40,23 @@ export default class Filters extends Vue {
 $main-color: #f44;
 
 .filters {
-  height: 100vh;
   overflow: hidden;
-  max-width: 250px;
-  width: 33vw;
-  display: inline-block;
+  max-width: 240px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
   background-color: #eee;
 
   .filter-title {
-    line-height: 60px;
-    height: 60px;
+    line-height: 50px;
+    height: 50px;
     background-color: $main-color;
     margin: 0;
     padding: 0;
     color: white;
     text-align: center;
     text-transform: uppercase;
-    font-size: 1.5em;
+    font-size: 1.4em;
   }
 
   ul.country-list {

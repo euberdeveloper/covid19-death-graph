@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <div class="main">
-      <router-view class="router-view" />
-      <navbar class="navbar" />
-    </div>
+    <router-view class="router-view" />
+    <navbar class="navbar" />
     <filters class="filters" />
   </div>
 </template>
@@ -30,17 +28,27 @@ html,
 body,
 #app {
   font-family: Arial, Helvetica, sans-serif;
-  height: 100%;
-  width: 100%;
-  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .filters {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  right: 0;
+  transition: 0.3s ease-in-out right;
 
+  &.closed {
+    right: 0px;
+  }
 }
 
-.main {
-  flex-grow: 1;
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
-
 </style>

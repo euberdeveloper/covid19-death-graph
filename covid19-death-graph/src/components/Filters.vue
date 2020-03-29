@@ -2,14 +2,14 @@
   <div class="filters">
     <h3 class="filter-title">Countries</h3>
     <ul class="country-list">
-      <li v-for="c in countries" :key="c.code">
+      <li v-for="c in countries" :key="c.slug">
         <input
           type="checkbox"
-          :id=" 'country-filter-list-' + c.code"
-          :value="c.code"
+          :id="'country-filter-list-' + c.slug"
+          :value="c.slug"
           v-model="selectedCountry"
         />
-        <label :for=" 'country-filter-list-' + c.code">{{c.name}}</label>
+        <label :for="'country-filter-list-' + c.slug">{{c.name}}</label>
       </li>
     </ul>
   </div>
@@ -18,16 +18,16 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import * as API from '../../services/api';
+import * as api from '@/services/api';
 
 @Component
 export default class Filters extends Vue {
-  private countries: { name: string; code: string }[] = []
+  private countries: { name: string; slug: string }[] = []
 
   private selectedCountry: any[] = [];
 
-  mounted() {
-    this.countries = API.countryList()
+  async mounted() {
+    this.countries = await api.getCountries()
   }
 }
 </script>
@@ -36,12 +36,16 @@ export default class Filters extends Vue {
 $main-color: #f66;
 
 .filters {
+  height: 100vh;
+  overflow: hidden;
   max-width: 250px;
   width: 33vw;
   display: inline-block;
   background-color: #eee;
 
   .filter-title {
+    line-height: 60px;
+    height: 60px;
     background-color: $main-color;
     margin: 0;
     padding: 0.7em 0;
@@ -52,10 +56,10 @@ $main-color: #f66;
   }
 
   ul.country-list {
+    height: 100%;
     list-style: none;
     padding: 0.5em 1em;
     margin: 0;
-    max-height: 500px;
     overflow-y: scroll;
 
     li {

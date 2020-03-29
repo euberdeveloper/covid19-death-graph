@@ -61,11 +61,10 @@ export default class Graph extends Vue {
 .graph {
   div {
     position: absolute;
-    right: 250px;
-    left: 1px;
-    top: 60px;
-    bottom: 1px;
-    max-height: 100%;
+    right: 290px;
+    left: 40px;
+    top: 40px;
+    bottom: 110px;
   }
 }
 </style>

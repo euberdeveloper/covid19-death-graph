@@ -35,8 +35,8 @@ body,
 
 .filters {
   position: absolute;
-  top: 60px;
-  bottom: 0;
+  bottom: 60px;
+  top: 0;
   right: 0;
   transition: 0.3s ease-in-out right;
 
@@ -47,7 +47,7 @@ body,
 
 .navbar {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
 }

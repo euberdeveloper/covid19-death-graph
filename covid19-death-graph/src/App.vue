@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <navbar class="navbar" />
+    <div class="main">
+      <router-view class="router-view" />
+      <navbar class="navbar" />
+    </div>
     <filters class="filters" />
-    <router-view class="router-view" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-import Navbar from '@/components/Navbar.vue';
-import Filters from '@/components/Filters.vue';
+import Navbar from "@/components/Navbar.vue";
+import Filters from "@/components/Filters.vue";
 
 @Component({
   components: {
@@ -19,18 +21,26 @@ import Filters from '@/components/Filters.vue';
   }
 })
 export default class App extends Vue {
-
-  mounted(): void {
-    let r = (this.$router as any)["options"]["routes"];
-    console.log(r);
-  }
+  mounted(): void {}
 }
 </script>
 
 <style lang="scss">
-html, body, #app {
+html,
+body,
+#app {
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
   width: 100%;
+  display: flex;
 }
+
+.filters {
+
+}
+
+.main {
+  flex-grow: 1;
+}
+
 </style>

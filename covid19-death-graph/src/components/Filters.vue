@@ -2,14 +2,14 @@
   <div class="filters">
     <h3 class="filter-title">Countries</h3>
     <ul class="country-list">
-      <li v-for="c in countries" :key="c.slug">
+      <li v-for="country in countries" :key="country.slug">
         <input
           type="checkbox"
-          :id="'country-filter-list-' + c.slug"
-          :value="c.slug"
+          :id="`country-filter-list-${country.slug}`"
+          :value="country.slug"
           v-model="selectedCountry"
         />
-        <label :for="'country-filter-list-' + c.slug">{{c.name}}</label>
+        <label :for="`country-filter-list-${country.slug}`">{{country.name}}</label>
       </li>
     </ul>
   </div>
@@ -22,18 +22,22 @@ import * as api from '@/services/api';
 
 @Component
 export default class Filters extends Vue {
-  private countries: { name: string; slug: string }[] = []
+  private countries: { name: string; slug: string }[] = [];
+
+  private shit: any = {};
 
   private selectedCountry: any[] = [];
 
   async mounted() {
-    this.countries = await api.getCountries()
+    this.countries = await api.getCountries();
+    this.shit = await api.getCountryRecords('italy');
+    console.log(JSON.stringify(this.shit, null, 2));
   }
 }
 </script>
 
-<style lang="scss">
-$main-color: #f66;
+<style lang="scss" scoped>
+$main-color: #f44;
 
 .filters {
   height: 100vh;
@@ -48,7 +52,7 @@ $main-color: #f66;
     height: 60px;
     background-color: $main-color;
     margin: 0;
-    padding: 0.7em 0;
+    padding: 0;
     color: white;
     text-align: center;
     text-transform: uppercase;
@@ -77,10 +81,6 @@ $main-color: #f66;
         float: left;
         position: relative;
         cursor: pointer;
-        -ms-transform: scale(1.5); /* IE */
-        -moz-transform: scale(1.5); /* FF */
-        -webkit-transform: scale(1.5); /* Safari and Chrome */
-        -o-transform: scale(1.5); /* Opera */
         transform: scale(1.5);
       }
       input[type="checkbox"]:after {

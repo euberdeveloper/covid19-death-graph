@@ -1,6 +1,6 @@
 <template>
   <div class="graph">
-    <div />
+    <div id="div_g" />
   </div>
 </template>
 
@@ -57,13 +57,13 @@ export default class Graph extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .graph {
   div {
     position: absolute;
     right: 250px;
     left: 1px;
-    top: 100px;
+    top: 60px;
     bottom: 1px;
     max-height: 100%;
   }

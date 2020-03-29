@@ -16,7 +16,7 @@ export default class GraphThree extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .graph-three {
   
 }

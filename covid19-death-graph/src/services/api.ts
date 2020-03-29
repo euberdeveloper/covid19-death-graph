@@ -58,11 +58,12 @@ export async function getCountryRecords(slug: string): Promise<CountryRecords> {
 
         for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
             const timestamp = date.toISOString();
+
             const record: Record = {
                 timestamp,
-                confirmed: confirmed[0].Date === timestamp ? (confirmed[0].shift()).Cases : 0,
-                recovered: recovered[0].Date === timestamp ? (recovered[0].shift()).Cases : 0,
-                deaths: deaths[0].Date === timestamp ? (deaths[0].shift()).Cases : 0,
+                confirmed: confirmed[0].Date === timestamp.replace('.000Z', 'Z') ? (confirmed.shift()).Cases : 0,
+                recovered: recovered[0].Date === timestamp.replace('.000Z', 'Z') ? (recovered.shift()).Cases : 0,
+                deaths: deaths[0].Date === timestamp.replace('.000Z', 'Z') ? (deaths.shift()).Cases : 0,
             };
             result.records.push(record);
         }
